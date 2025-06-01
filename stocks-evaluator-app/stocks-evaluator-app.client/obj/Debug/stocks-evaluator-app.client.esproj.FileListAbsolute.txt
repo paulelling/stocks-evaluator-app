@@ -1,0 +1,1 @@
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.client\obj\Debug\stocks-evaluator-app.client.esproj.CoreCompileInputs.cache

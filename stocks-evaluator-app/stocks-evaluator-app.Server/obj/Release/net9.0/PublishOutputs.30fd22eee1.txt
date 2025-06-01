@@ -1,0 +1,10 @@
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\stocks-evaluator-app.Server.exe
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\appsettings.Development.json
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\appsettings.json
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\stocks-evaluator-app.Server.dll
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\stocks-evaluator-app.Server.deps.json
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\stocks-evaluator-app.Server.runtimeconfig.json
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\stocks-evaluator-app.Server.pdb
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.AspNetCore.SpaProxy.dll
+D:\GitHub\paulelling\stocks-evaluator-app\stocks-evaluator-app\stocks-evaluator-app.Server\obj\Release\net9.0\PubTmp\Out\Microsoft.OpenApi.dll
