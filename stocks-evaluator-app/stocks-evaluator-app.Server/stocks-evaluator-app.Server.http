@@ -1,6 +1,6 @@
 @stocks_evaluator_app.Server_HostAddress = http://localhost:5137
 
-GET {{stocks_evaluator_app.Server_HostAddress}}/weatherforecast/
+GET {{stocks_evaluator_app.Server_HostAddress}}/stock/
 Accept: application/json
 
 ###
