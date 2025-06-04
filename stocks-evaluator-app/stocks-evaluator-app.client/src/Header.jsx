@@ -1,15 +1,23 @@
+import { BrowserRouter, Link } from 'react-router-dom';
+
 export default function Header() {
     return (
         <div className="header">
             <div className="headerLeft">
                 <div className="title">
-                    Stocks Evaluator
+                    <Link to="/StockRequest">Stocks Evaluator</Link>
                 </div>
             </div>
             <div className="headerRight">
                 <div className="menu">
                     <div>
-                        Guide
+                        <Link to="/StockRequest">Search</Link>
+                    </div>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div>
+                        <Link to="/Guide">Guide</Link>
                     </div>
                     <div>
                         &nbsp;&nbsp;&nbsp;
