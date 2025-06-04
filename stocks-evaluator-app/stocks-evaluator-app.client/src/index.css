@@ -51,11 +51,16 @@ body {
     text-align: center;
 }
 
-.searchButton {
+.showButton {
     cursor: pointer;
     background-color: #000080;
     color: #ffffff;
     border-radius: 25px;
+    display: inline;
+}
+
+.hideButton {
+    display: none;
 }
 
 .response {

@@ -33,10 +33,17 @@ export default function StockRequest() {
         }
     }
 
+    function removeClass(buttonId, cssClass) {
+        document.getElementById(buttonId).classList.remove(cssClass);
+    }
+
+    function addClass(buttonId, cssClass) {
+        document.getElementById(buttonId).classList.add(cssClass);
+    }
+
     const [showResponse, setShowReponse] = useState(false);
 
     var ticker = "";
-
     function searchStock() {
         ticker = document.getElementById("tickerTextBox").value;
 
@@ -51,14 +58,29 @@ export default function StockRequest() {
         else {
             document.getElementById("ErrorLabel").innerHTML = "";
             setShowReponse(!showResponse);
+            removeClass("searchButton", "showButton");
+            addClass("searchButton", "hideButton");
+            removeClass("clearButton", "hideButton");
+            addClass("clearButton", "showButton");
         }
     }
+    
+    function clearStock() {
+        document.getElementById("tickerTextBox").value = "";
+        document.getElementById("ErrorLabel").innerHTML = "";
+        setShowReponse(false);
+        removeClass("searchButton", "hideButton");
+        addClass("searchButton", "showButton");
+        removeClass("clearButton", "showButton");
+        addClass("clearButton", "hideButton");
+    };
 
     return (
         <div className="form">
             <input type="text" id="tickerTextBox" placeholder="Enter Stock Ticker"></input>
             &nbsp;&nbsp;
-            <button className="searchButton" onClick={searchStock}>Search</button>
+            <button id="searchButton" className="showButton" onClick={searchStock}>Search</button>
+            <button id="clearButton" className="hideButton" onClick={clearStock}>Clear</button>
             <br />
             <br />
             <label id="ErrorLabel"></label>

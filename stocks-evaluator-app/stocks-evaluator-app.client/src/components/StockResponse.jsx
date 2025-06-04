@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from 'react';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+
 export default function StockResponse({ ticker }) {
     ticker = ticker.toUpperCase();
 
@@ -5,70 +9,120 @@ export default function StockResponse({ ticker }) {
         document.getElementById(labelId).innerHTML = value;
     }
 
-    var response = fetch('stock?ticker=' + ticker)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setLabelValue("TickerLabel", data["ticker"]);
-            setLabelValue("NameLabel", data["name"]);
-            setLabelValue("PriceLabel", data["price"]);
-            setLabelValue("FiftyTwoWeekLowLabel", data["fiftyTwoWeekLow"]);
-            setLabelValue("FiftyTwoWeekHighLabel", data["fiftyTwoWeekHigh"]);
-            setLabelValue("MarketCapitalizationLabel", data["marketCapitalization"]);
-            setLabelValue("SharesOutstandingLabel", data["sharesOutstanding"]);
-            setLabelValue("EarningsPerShareLabel", data["earningsPerShare"]);
-            setLabelValue("DividendPerShareLabel", data["dividendPerShare"]);
-            setLabelValue("BetaLabel", data["beta"]);
-            setLabelValue("PERatioLabel", data["priceEarningsRatio"]);
-            setLabelValue("EarningsYieldLabel", data["earningsYield"]);
-            setLabelValue("GrossMarginLabel", data["grossMargin"]);
-            setLabelValue("OperatingMarginLabel", data["operatingMargin"]);
-            setLabelValue("AssetTurnoverLabel", data["assetTurnover"]);
-            setLabelValue("InventoryTurnoverLabel", data["inventoryTurnover"]);
-            setLabelValue("ReceivablesTurnoverLabel", data["receivablesTurnover"]);
-            setLabelValue("QuickRatioLabel", data["quickRatio"]);
+    const [chartOptions, setChartOptions] = useState({
+        series: [{ data: [] }] // Initialize with empty data
+    });
 
-            setLabelValue("BalanceSheetDateLabel", data["balanceSheet"]["date"]);
-            setLabelValue("CurrentAssetsLabel", data["balanceSheet"]["currentAssets"]);
-            setLabelValue("CurrentLiabilitiesLabel", data["balanceSheet"]["currentLiabilities"]);
-            setLabelValue("TotalCashLabel", data["balanceSheet"]["totalCash"]);
-            setLabelValue("TotalDebtLabel", data["balanceSheet"]["totalDebt"]);
-            setLabelValue("TotalEquityLabel", data["balanceSheet"]["totalEquity"]);
-            setLabelValue("OwnersEquityLabel", data["balanceSheet"]["ownerEquity"]);
-            setLabelValue("LongTermDebt", data["balanceSheet"]["longTermDebt"]);
-            setLabelValue("BalanceSheetInventoryLabel", data["balanceSheet"]["inventory"]);
-            setLabelValue("AccountsReceivableLabel", data["balanceSheet"]["accountsReceivable"]);
+    useEffect(() => {
 
-            setLabelValue("IncomeStatementDateLabel", data["incomeStatement"]["date"]);
-            setLabelValue("EBITLabel", data["incomeStatement"]["ebit"]);
-            setLabelValue("EBITDALabel", data["incomeStatement"]["ebitda"]);
-            setLabelValue("DepreciationAndAmortizationLabel", data["incomeStatement"]["depreciationAndAmortization"]);
-            setLabelValue("NetIncomeLabel", data["incomeStatement"]["netIncome"]);
-            setLabelValue("OperatingIncomeLabel", data["incomeStatement"]["operatingIncome"]);
+        var response = fetch('stock?ticker=' + ticker)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setLabelValue("TickerLabel", data["ticker"]);
+                setLabelValue("NameLabel", data["name"]);
+                setLabelValue("PriceLabel", data["price"]);
+                setLabelValue("FiftyTwoWeekLowLabel", data["fiftyTwoWeekLow"]);
+                setLabelValue("FiftyTwoWeekHighLabel", data["fiftyTwoWeekHigh"]);
+                setLabelValue("FiftyTwoWeekLowDateLabel", data["fiftyTwoWeekLowDate"]);
+                setLabelValue("FiftyTwoWeekHighDateLabel", data["fiftyTwoWeekHighDate"]);
+                setLabelValue("MarketCapitalizationLabel", data["marketCapitalization"]);
+                setLabelValue("SharesOutstandingLabel", data["sharesOutstanding"]);
+                setLabelValue("EarningsPerShareLabel", data["earningsPerShare"]);
+                setLabelValue("DividendPerShareLabel", data["dividendPerShare"]);
+                setLabelValue("BetaLabel", data["beta"]);
+                setLabelValue("PERatioLabel", data["priceEarningsRatio"]);
+                setLabelValue("EarningsYieldLabel", data["earningsYield"]);
+                setLabelValue("GrossMarginLabel", data["grossMargin"]);
+                setLabelValue("OperatingMarginLabel", data["operatingMargin"]);
+                setLabelValue("AssetTurnoverLabel", data["assetTurnover"]);
+                setLabelValue("InventoryTurnoverLabel", data["inventoryTurnover"]);
+                setLabelValue("ReceivablesTurnoverLabel", data["receivablesTurnover"]);
+                setLabelValue("QuickRatioLabel", data["quickRatio"]);
 
-            setLabelValue("CashFlowStatementDate", data["cashFlowStatement"]["date"]);
-            setLabelValue("OperatingCashFlow", data["cashFlowStatement"]["operatingCashFlow"]);
-            setLabelValue("Taxes", data["cashFlowStatement"]["taxes"]);
-            setLabelValue("ChangeInNetWorkingCapital", data["cashFlowStatement"]["changeInNetWorkingCapital"]);
-            setLabelValue("CashFlowStatementInventory", data["cashFlowStatement"]["inventory"]);
-            setLabelValue("QualityOfIncomeRatio", data["qualityOfIncomeRatio"]);
+                setLabelValue("BalanceSheetDateLabel", data["balanceSheet"]["date"]);
+                setLabelValue("CurrentAssetsLabel", data["balanceSheet"]["currentAssets"]);
+                setLabelValue("CurrentLiabilitiesLabel", data["balanceSheet"]["currentLiabilities"]);
+                setLabelValue("TotalCashLabel", data["balanceSheet"]["totalCash"]);
+                setLabelValue("TotalDebtLabel", data["balanceSheet"]["totalDebt"]);
+                setLabelValue("TotalEquityLabel", data["balanceSheet"]["totalEquity"]);
+                setLabelValue("OwnersEquityLabel", data["balanceSheet"]["ownerEquity"]);
+                setLabelValue("LongTermDebt", data["balanceSheet"]["longTermDebt"]);
+                setLabelValue("BalanceSheetInventoryLabel", data["balanceSheet"]["inventory"]);
+                setLabelValue("AccountsReceivableLabel", data["balanceSheet"]["accountsReceivable"]);
 
-            setLabelValue("CurrentRatioLabel", data["currentRatio"]);
-            setLabelValue("CashRatioLabel", data["cashRatio"]);
+                setLabelValue("IncomeStatementDateLabel", data["incomeStatement"]["date"]);
+                setLabelValue("EBITLabel", data["incomeStatement"]["ebit"]);
+                setLabelValue("EBITDALabel", data["incomeStatement"]["ebitda"]);
+                setLabelValue("DepreciationAndAmortizationLabel", data["incomeStatement"]["depreciationAndAmortization"]);
+                setLabelValue("NetIncomeLabel", data["incomeStatement"]["netIncome"]);
+                setLabelValue("OperatingIncomeLabel", data["incomeStatement"]["operatingIncome"]);
 
-            setLabelValue("NetAssetValueLabel", data["netAssetValue"]);
-            setLabelValue("TotalDebtRatioLabel", data["totalDebtRatio"]);
-            setLabelValue("DebtEquityRatioLabel", data["debtEquityRatio"]);
-            setLabelValue("EquityMultiplierLabel", data["equityMultiplier"]);
-            setLabelValue("FinancialLeverageRatioLabel", data["financialLeverageRatio"]);
-            setLabelValue("LongTermDebtRatioLabel", data["longTermDebtRatio"]);
+                setLabelValue("CashFlowStatementDate", data["cashFlowStatement"]["date"]);
+                setLabelValue("OperatingCashFlow", data["cashFlowStatement"]["operatingCashFlow"]);
+                setLabelValue("Taxes", data["cashFlowStatement"]["taxes"]);
+                setLabelValue("ChangeInNetWorkingCapital", data["cashFlowStatement"]["changeInNetWorkingCapital"]);
+                setLabelValue("CashFlowStatementInventory", data["cashFlowStatement"]["inventory"]);
+                setLabelValue("QualityOfIncomeRatio", data["qualityOfIncomeRatio"]);
 
-            setLabelValue("ReturnOnAssetsLabel", data["returnOnAssets"]);
-            setLabelValue("ReturnOnEquityLabel", data["returnOnEquity"]);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+                setLabelValue("CurrentRatioLabel", data["currentRatio"]);
+                setLabelValue("CashRatioLabel", data["cashRatio"]);
+
+                setLabelValue("NetAssetValueLabel", data["netAssetValue"]);
+                setLabelValue("TotalDebtRatioLabel", data["totalDebtRatio"]);
+                setLabelValue("DebtEquityRatioLabel", data["debtEquityRatio"]);
+                setLabelValue("EquityMultiplierLabel", data["equityMultiplier"]);
+                setLabelValue("FinancialLeverageRatioLabel", data["financialLeverageRatio"]);
+                setLabelValue("LongTermDebtRatioLabel", data["longTermDebtRatio"]);
+
+                setLabelValue("ReturnOnAssetsLabel", data["returnOnAssets"]);
+                setLabelValue("ReturnOnEquityLabel", data["returnOnEquity"]);
+
+                var fiftyTwoWeekLow = data["fiftyTwoWeekLow"];
+                var fiftyTwoWeekHigh = data["fiftyTwoWeekHigh"];
+                var fiftyTwoWeekLowDate = data["fiftyTwoWeekLowDate"];
+                var fiftyTwoWeekHighDate = data["fiftyTwoWeekHighDate"];
+
+                var fiftyTwoWeekHighDateObject = new Date(fiftyTwoWeekHighDate);
+                var fiftyTwoWeekLowDateObject = new Date(fiftyTwoWeekLowDate);
+
+                var firstDate;
+                var secondDate;
+
+                var firstPrice;
+                var secondPrice;
+
+                if (fiftyTwoWeekHighDateObject > fiftyTwoWeekLowDateObject) {
+                    firstDate = fiftyTwoWeekLowDate;
+                    firstPrice = Number(fiftyTwoWeekLow);
+                    secondDate = fiftyTwoWeekHighDate;
+                    secondPrice = Number(fiftyTwoWeekHigh);
+                }
+                else if (fiftyTwoWeekLowDateObject > fiftyTwoWeekHighDateObject) {
+                    firstDate = fiftyTwoWeekHighDate;
+                    firstPrice = Number(fiftyTwoWeekHigh);
+                    secondDate = fiftyTwoWeekLowDate;
+                    secondPrice = Number(fiftyTwoWeekLow);
+                }
+
+                setChartOptions(prevState => ({
+                    ...prevState,
+                    series: [{ name: "Price", data: [firstPrice, secondPrice] }], // Set the fetched data
+                    xAxis: [{ categories: [firstDate, secondDate] }], // Set the fetched data]
+                    title: { text: "52-Week Price Swing" },
+                    yAxis: {
+                        title: {
+                            text: 'Price'
+                        }
+                    }
+                }));
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+    }, []);
+
 
     return (
         <div>
@@ -97,6 +151,22 @@ export default function StockResponse({ ticker }) {
                             -
                             &nbsp;
                             <label id="FiftyTwoWeekHighLabel"></label>
+                        </div>
+                    </div>
+                    <div className='dataLayout'>
+                        <div>
+                            <label>52 Week Low Date</label>
+                        </div>
+                        <div>
+                            <label id="FiftyTwoWeekLowDateLabel"></label>
+                        </div>
+                    </div>
+                    <div className='dataLayout'>
+                        <div>
+                            <label>52 Week High Date</label>
+                        </div>
+                        <div>
+                            <label id="FiftyTwoWeekHighDateLabel"></label>
                         </div>
                     </div>
                     <div className='dataLayout'>
@@ -204,6 +274,11 @@ export default function StockResponse({ ticker }) {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div className='response'>
+                <HighchartsReact highcharts={Highcharts} options={chartOptions}></HighchartsReact>
             </div>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
