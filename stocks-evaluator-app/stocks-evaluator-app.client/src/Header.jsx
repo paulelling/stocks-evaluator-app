@@ -5,19 +5,19 @@ export default function Header() {
         <div className="header">
             <div className="headerLeft">
                 <div className="title">
-                    <Link to="/StockRequest">Stocks Evaluator</Link>
+                    <Link to="/StockRequest" className="headerLink">Stocks Evaluator</Link>
                 </div>
             </div>
             <div className="headerRight">
                 <div className="menu">
                     <div>
-                        <Link to="/StockRequest">Search</Link>
+                        <Link to="/StockRequest" className="headerLink">Search</Link>
                     </div>
                     <div>
                         &nbsp;&nbsp;&nbsp;
                     </div>
                     <div>
-                        <Link to="/Guide">Guide</Link>
+                        <Link to="/Guide" className="headerLink">Guide</Link>
                     </div>
                     <div>
                         &nbsp;&nbsp;&nbsp;
