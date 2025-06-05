@@ -13,6 +13,14 @@ export default function StockResponse({ ticker }) {
         return parseFloat(x).toFixed(2).toLocaleString();
     }
 
+    function formatWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function formatWithDecimalsAndCommas(x) {
+        return formatWithDecimals(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     const [chartOptions, setChartOptions] = useState({
         series: [{ data: [] }] // Initialize with empty data
     });
@@ -36,8 +44,8 @@ export default function StockResponse({ ticker }) {
                     setLabelValue("FiftyTwoWeekHighLabel", formatWithDecimals(data["fiftyTwoWeekHigh"]));
                     setLabelValue("FiftyTwoWeekLowDateLabel", data["fiftyTwoWeekLowDate"]);
                     setLabelValue("FiftyTwoWeekHighDateLabel", data["fiftyTwoWeekHighDate"]);
-                    setLabelValue("MarketCapitalizationLabel", formatWithDecimals(data["marketCapitalization"]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("SharesOutstandingLabel", formatWithDecimals(data["sharesOutstanding"]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    setLabelValue("MarketCapitalizationLabel", formatWithDecimalsAndCommas(data["marketCapitalization"]));
+                    setLabelValue("SharesOutstandingLabel", formatWithDecimalsAndCommas(data["sharesOutstanding"]));
                     setLabelValue("EarningsPerShareLabel", formatWithDecimals(data["earningsPerShare"]));
                     setLabelValue("DividendPerShareLabel", formatWithDecimals(data["dividendPerShare"]));
                     setLabelValue("BetaLabel", formatWithDecimals(data["beta"]));
@@ -51,34 +59,34 @@ export default function StockResponse({ ticker }) {
                     setLabelValue("QuickRatioLabel", formatWithDecimals(data["quickRatio"]));
 
                     setLabelValue("BalanceSheetDateLabel", data["balanceSheet"]["date"]);
-                    setLabelValue("CurrentAssetsLabel", data["balanceSheet"]["currentAssets"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("CurrentLiabilitiesLabel", data["balanceSheet"]["currentLiabilities"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("TotalCashLabel", data["balanceSheet"]["totalCash"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("TotalDebtLabel", data["balanceSheet"]["totalDebt"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("TotalEquityLabel", data["balanceSheet"]["totalEquity"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("OwnersEquityLabel", data["balanceSheet"]["ownerEquity"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("LongTermDebt", data["balanceSheet"]["longTermDebt"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("BalanceSheetInventoryLabel", data["balanceSheet"]["inventory"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("AccountsReceivableLabel", data["balanceSheet"]["accountsReceivable"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    setLabelValue("CurrentAssetsLabel", formatWithCommas(data["balanceSheet"]["currentAssets"]));
+                    setLabelValue("CurrentLiabilitiesLabel", formatWithCommas(data["balanceSheet"]["currentLiabilities"]));
+                    setLabelValue("TotalCashLabel", formatWithCommas(data["balanceSheet"]["totalCash"]));
+                    setLabelValue("TotalDebtLabel", formatWithCommas(data["balanceSheet"]["totalDebt"]));
+                    setLabelValue("TotalEquityLabel", formatWithCommas(data["balanceSheet"]["totalEquity"]));
+                    setLabelValue("OwnersEquityLabel", formatWithCommas(data["balanceSheet"]["ownerEquity"]));
+                    setLabelValue("LongTermDebt", formatWithCommas(data["balanceSheet"]["longTermDebt"]));
+                    setLabelValue("BalanceSheetInventoryLabel", formatWithCommas(data["balanceSheet"]["inventory"]));
+                    setLabelValue("AccountsReceivableLabel", formatWithCommas(data["balanceSheet"]["accountsReceivable"]));
 
                     setLabelValue("IncomeStatementDateLabel", data["incomeStatement"]["date"]);
-                    setLabelValue("EBITLabel", data["incomeStatement"]["ebit"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("EBITDALabel", data["incomeStatement"]["ebitda"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("DepreciationAndAmortizationLabel", data["incomeStatement"]["depreciationAndAmortization"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("NetIncomeLabel", data["incomeStatement"]["netIncome"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("OperatingIncomeLabel", data["incomeStatement"]["operatingIncome"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    setLabelValue("EBITLabel", formatWithCommas(data["incomeStatement"]["ebit"]));
+                    setLabelValue("EBITDALabel", formatWithCommas(data["incomeStatement"]["ebitda"]));
+                    setLabelValue("DepreciationAndAmortizationLabel", formatWithCommas(data["incomeStatement"]["depreciationAndAmortization"]));
+                    setLabelValue("NetIncomeLabel", formatWithCommas(data["incomeStatement"]["netIncome"]));
+                    setLabelValue("OperatingIncomeLabel", formatWithCommas(data["incomeStatement"]["operatingIncome"]));
 
                     setLabelValue("CashFlowStatementDate", data["cashFlowStatement"]["date"]);
-                    setLabelValue("OperatingCashFlow", data["cashFlowStatement"]["operatingCashFlow"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("Taxes", data["cashFlowStatement"]["taxes"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("ChangeInNetWorkingCapital", data["cashFlowStatement"]["changeInNetWorkingCapital"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-                    setLabelValue("CashFlowStatementInventory", data["cashFlowStatement"]["inventory"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    setLabelValue("OperatingCashFlow", formatWithCommas(data["cashFlowStatement"]["operatingCashFlow"]));
+                    setLabelValue("Taxes", formatWithCommas(data["cashFlowStatement"]["taxes"]));
+                    setLabelValue("ChangeInNetWorkingCapital", formatWithCommas(data["cashFlowStatement"]["changeInNetWorkingCapital"]));
+                    setLabelValue("CashFlowStatementInventory", formatWithCommas(data["cashFlowStatement"]["inventory"]));
                     setLabelValue("QualityOfIncomeRatio", formatWithDecimals(data["qualityOfIncomeRatio"]));
 
                     setLabelValue("CurrentRatioLabel", formatWithDecimals(data["currentRatio"]));
                     setLabelValue("CashRatioLabel", formatWithDecimals(data["cashRatio"]));
 
-                    setLabelValue("NetAssetValueLabel", data["netAssetValue"].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                    setLabelValue("NetAssetValueLabel", formatWithCommas(data["netAssetValue"]));
                     setLabelValue("TotalDebtRatioLabel", formatWithDecimals(data["totalDebtRatio"]));
                     setLabelValue("DebtEquityRatioLabel", formatWithDecimals(data["debtEquityRatio"]));
                     setLabelValue("EquityMultiplierLabel", formatWithDecimals(data["equityMultiplier"]));

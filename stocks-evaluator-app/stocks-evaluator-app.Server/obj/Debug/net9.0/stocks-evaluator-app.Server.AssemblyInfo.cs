@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("stocks-evaluator-app.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a51d82530843e288d6d8b4a615306129fb6a3f6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9508731b60953aa5d89d0df0a68c97e47e95d190")]
 [assembly: System.Reflection.AssemblyProductAttribute("stocks-evaluator-app.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("stocks-evaluator-app.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
